@@ -9,3 +9,7 @@ sed "196670,/199998/d" gap.XSF > aux.XSF		#Comando 'sed' para o arquivo todo nã
 sed "1,61d" aux.XSF > col2.XSF
 rm aux.XSF
 rm gap.XSF
+
+paste
+
+$(paste <(awk '{printf "%12.6f \n", $2}' col1.XSF))
