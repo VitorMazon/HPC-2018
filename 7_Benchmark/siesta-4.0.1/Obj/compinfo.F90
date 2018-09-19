@@ -32,7 +32,8 @@ character(len=*), parameter :: version_str =  &
 character(len=*), parameter :: siesta_arch= &
 "gfortran-nolibs"
 character(len=*), parameter :: fflags= &
-"gfortran -O3"
+"gfortran -O3 -msse4a -m3dnow -fexpensive-optimizations -m64 -foptimize-regist&
+&ter-move -funroll-loops -ffast-math"
 character(len=*), parameter :: fppflags= &
 "-DGFORTRAN -DFC_HAVE_FLUSH -DFC_HAVE_ABORT           "
 

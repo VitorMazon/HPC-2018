@@ -1,5 +1,0 @@
-->Linguagens interpretadas: Python, shell..
-
-->Fase de análise e de sintese de um compilador.
-
-->

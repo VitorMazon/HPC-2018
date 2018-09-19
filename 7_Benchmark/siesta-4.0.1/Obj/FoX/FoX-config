@@ -1,6 +1,6 @@
 #!/bin/sh
 
-comp_prefix=/home/hpc/Documentos/Vitor/7_Benchmark/siesta-4.0.1/Obj/FoX/objs
+comp_prefix=/home/hpc/Documentos/Vitor/HPC-2018/7_Benchmark/siesta-4.0.1/Obj/FoX/objs
 moddir=`echo $comp_prefix/finclude`
 libdir=`echo $comp_prefix/lib`
 version=4.1.0

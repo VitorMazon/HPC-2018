@@ -4,7 +4,7 @@
 BUILD_TARGETS= wcml_lib   
 
 VPATH=/home/hpc/Documentos/Vitor/7_Benchmark/siesta-4.0.1/Src/FoX
-compile_prefix=/home/hpc/Documentos/Vitor/7_Benchmark/siesta-4.0.1/Obj/FoX/objs
+compile_prefix=/home/hpc/Documentos/Vitor/HPC-2018/7_Benchmark/siesta-4.0.1/Obj/FoX/objs
 install_prefix=/usr/local
 LIB_DIR=$(compile_prefix)/lib
 MOD_DIR=$(compile_prefix)/finclude
@@ -13,7 +13,7 @@ FPP=
 FC=gfortran
 RANLIB=ranlib
 
-FFLAGS=-O0 
+FFLAGS=-O3 -msse4a -m3dnow -fexpensive-optimizations -m64 -foptimize-register-move -funroll-loops -ffast-math 
 FPPFLAGS= -DFC_HAVE_FLUSH -DFC_HAVE_ABORT -DFC_EOR_LF
 LDFLAGS=
 

@@ -8,7 +8,7 @@ for i in 0 1 2 3
  do
   sed "s/ XYX/ -O$i/g" arch.gf > arch.make
   make
-  cp siesta siesta-$i.x
-  mv arch.make arch-$i
+  cp siesta siesta-flags-$i.x
   make clean
+  mv arch.make arch-flags-$i
 done
