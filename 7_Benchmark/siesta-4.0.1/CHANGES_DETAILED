@@ -1,0 +1,988 @@
+##############################################
+ Detailed Changes between v4.0 and v4.0.1
+##############################################
+
+------------------------------------------------------------
+revno: 530
+tags: v4.0.1
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Mon 2017-07-03 12:08:01 +0200
+message:
+  Fixed Makefiles for clean targets in Util directories
+  
+  Now the following utilities will clean everything when
+  issuing make clean in their build directories.
+  
+  - COOP
+  - SiestaSubroutine/ProtoNEB
+  - SiestaSubroutine/SimpleTest
+  - WFS
+------------------------------------------------------------
+revno: 529
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Mon 2017-07-03 09:29:10 +0200
+message:
+  Updated all tests for the 4.0.1 release
+  
+  Every test has been updated and checked.
+  
+  There were some tests were the energy was changed.
+  This was due to fixes in the dipole correction where the
+  energy contribution of an internal field is only half of
+  an external field. This was a bug in prior versions.
+  
+  Secondly, there were a few tests missing in the Tests/Makefile
+  which have now been added.
+------------------------------------------------------------
+revno: 528
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Sun 2017-07-02 12:08:24 +0200
+message:
+  Fixed test name for dipole_correction
+  
+  The dipole_correction test had an erroneous SystemLabel.
+  This has been corrected.
+------------------------------------------------------------
+revno: 527
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Sun 2017-07-02 10:44:19 +0200
+message:
+  Fixes fdf-name for maxwalltime and the variable declaration
+  
+  Now the walltime_warning is in real(dp) to fit the reading of
+  floating point values (to prevent erroneous conversion from
+  real(dp) -> integer)
+  
+  Fixed name reads in fdf_get to be the same as the documentation
+  specification.
+------------------------------------------------------------
+revno: 526 [merge]
+author: Nick Papior <nickpapior@gmail.com>
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Sat 2017-07-01 22:50:23 +0200
+message:
+  Provide units for max-walltime and max-walltime-slack. Add fdf_isphysical
+  
+  The fdf options max-walltime and max-walltime-slack should properly be
+  specified with units (e.g. 2.5 hours), instead of what a single number
+  interpreted as seconds.
+  
+  To maintain compatibility with previous usage, a new boolean function
+  
+   fdf_isphysical(label)
+  
+  has been added to the FDF library, to check whether units are given
+  for the value of 'label' in the fdf file or not.
+    ------------------------------------------------------------
+    revno: 515.1.19
+    author: Nick Papior <nickpapior@gmail.com>
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Sat 2017-07-01 22:47:51 +0200
+    message:
+      Provide units for max-walltime and max-walltime-slack. Add fdf_isphysical
+      
+      The fdf options max-walltime and max-walltime-slack should properly be
+      specified with units (e.g. 2.5 hours), instead of what a single number
+      interpreted as seconds.
+      
+      To maintain compatibility with previous usage, a new boolean function
+      
+       fdf_isphysical(label)
+      
+      has been added to the FDF library, to check whether units are given for
+      the value of 'label' in the fdf file or not.
+------------------------------------------------------------
+revno: 525 [merge]
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Sat 2017-07-01 22:37:46 +0200
+message:
+  More robust treatment of nspin=4 in GGA XC routines
+  
+  In Src/SiestaXC/ggaxc.f, and in Src/xc.f, use a more robust
+  determination of the angles and the derivatives.
+  
+  (Thanks to Ramon Cuadrado)
+    ------------------------------------------------------------
+    revno: 523.1.3 [merge]
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-xc
+    timestamp: Sat 2017-07-01 15:52:17 +0200
+    message:
+      Merge: removal of redundant comments
+        ------------------------------------------------------------
+        revno: 523.2.1
+        committer: Nick Papior <nickpapior@gmail.com>
+        branch nick: 4.0-xc
+        timestamp: Fri 2017-06-30 19:55:36 +0200
+        message:
+          Removed RC comments that were not needed, no code logic has changed
+    ------------------------------------------------------------
+    revno: 523.1.2
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-xc
+    timestamp: Fri 2017-06-30 16:45:53 +0200
+    message:
+      More robust treatment of nspin=4 in SiestaXC/ggaxc.f
+    ------------------------------------------------------------
+    revno: 523.1.1
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-xc
+    timestamp: Fri 2017-06-30 16:37:45 +0200
+    message:
+      More robust way to deal with nspin=4 in xc.f
+------------------------------------------------------------
+revno: 524
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Sat 2017-07-01 15:28:08 +0200
+message:
+  (log for r523) Update the STM programs in Util/STM
+  
+  (By mistake, r523 used a wrong commit log. This is the correct one)
+  
+  - Fix fftw plan bug in STM/ol-stm code
+  
+    Due to an oversight, the NX and NY dimensions were not interchanged
+    in the call to the FFTW plan routine that uses the F2003 interface.
+  
+  - Use WFSX files as input for the STM/ol-stm program
+  
+    It is no longer necessary to convert the WFSX to an old-fashioned
+    WFS file before using the program. This will save space and time.
+  
+  - Add 'stm-label' feature to STM/ol-stm program + cosmetics
+    
+    An optional label can be pasted in the name of the output
+    files.
+    Remove fossil files and update documentation.
+  
+  - Add test for si001-ldos. Extra lines in plstm
+    
+    Added a new test to compute the LDOS for the si001-H test, to
+    exercise the 'simple' STM program STM/plstm
+    
+    In plstm, print a blank line after every set of x scans, so that
+    gnuplot can work better in 'surface/contour' mode.
+  
+  - Add a new interpolation option 'poly' to macroave
+    
+    Macroave might be useful to determine automatically the right
+    point at which the vacuum potential gets flat (of interest for
+    STM/ol-stm operation).
+    
+    The 'spline' interpolation option can cause oscillations for
+    functions with discontinuous derivatives. In these cases the
+    'linear' option is more robust.
+    
+    The current implementation of the 'linear' option is quite obscure. A
+    new option 'poly' has been introduced. It uses a routine derived from
+    code by D.R. Hamann which implements general polynomial interpolation.
+    For order=1, it can replace the 'linear' option. For now, pending an
+    upgrade of the interface, 'poly' implements quadratic polynomial
+    interpolation (subject to the same oscillations for non-smooth
+    functions).
+------------------------------------------------------------
+revno: 523 [merge]
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Fri 2017-06-30 16:01:29 +0200
+message:
+  Add extra logging and control capabilities
+  
+  A number of extra control and logging features have been implemented
+  to facilitate the use of Siesta within automated computational
+  frameworks, notably the AiiDA platform.
+  
+  - A new file 'MESSAGES' holds a summary of warnings and possible errors.
+  
+    Calls to 'die' now print a line in MESSAGES with a 'FATAL' prefix, and
+    then perform an orderly closing of the CML file, and flush stdout and
+    stderr, before actually terminating the program.
+  
+    The routine 'message(level,str)' also prints an appropriate line in
+    MESSAGES.
+  
+  - Optional termination if geometry is not converged
+    
+    If the flag 'Geometry.Must.Converge' is .true., the
+    program will terminate if the geometry relaxation is
+    not converged, before carrying out any final analysis.
+  
+  - Enhancements to the CML interface
+  
+    Add routine print_spin and call it at every geometry step. The final
+    call in 'siesta_analysis' is preserved for backwards compatibility.
+  
+    Put energies in 'scf finalization' module in the CML file
+  
+    Write stress to CML file at each geometry step
+  
+    Close properly the CML stack before 'die'ing.
+  
+  - Add a simple interface to check wall-clock time
+    
+    A new module 'm_check_walltime' provides a routine
+    'check_walltime' and exports variables 'walltime_max'
+    and 'walltime_warning'.
+    
+    Users can request walltime control by means of the
+    fdf variables:
+    
+    Max.Walltime N   # in seconds, default infinity
+    Max.Walltime.Slack    # in seconds
+    
+    Typically, the first would be set automatically by inheritance
+    from the queuing system or AiiDA script. The second should give
+    an estimate of the time needed for cleanup operations. The default
+    is 5 seconds.
+    
+    Currently, the 'check_walltime' routine is invoked at the end of
+    every SCF step, and at the end of every geometry step.
+  
+  - Fixes for compilation
+    
+    Use a 'local_sys.{f,F}' file in Util programs and
+    SiestaXC to decouple them from the extra functionality
+    in the top-level sys.F file (particularly the CML closing
+    operations).
+    
+    Remove the dependency of 'alloc.o' on 'debugmpi'.
+    
+    Add '.c' to .SUFFIXES in 'arch.make.in' 
+  
+  - Add arch.make suitable for fortran-mpi Docker image
+  
+    (Experimental)
+    ------------------------------------------------------------
+    revno: 515.2.6
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-stm
+    timestamp: Fri 2017-06-02 17:48:55 +0200
+    message:
+      Add a new interpolation option 'poly' to macroave
+      
+      Macroave might be useful to determine automatically the right
+      point at which the vacuum potential gets flat.
+      
+      The 'spline' interpolation option can cause oscillations for
+      functions with discontinuous derivatives. In these cases the
+      'linear' option is more robust.
+      
+      The current implementation of the 'linear' option is quite obscure. A
+      new option 'poly' has been introduced. It uses a routine derived from
+      code by D.R. Hamann which implements general polynomial interpolation.
+      For order=1, it can replace the 'linear' option. For now, pending an
+      upgrade of the interface, 'poly' implements quadratic polynomial
+      interpolation (subject to the same oscillations for non-smooth
+      functions).
+    ------------------------------------------------------------
+    revno: 515.2.5
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-stm
+    timestamp: Thu 2017-06-01 15:25:51 +0200
+    message:
+      Add 'stm-label' feature to STM program + cosmetics
+      
+      An optional label can be pasted in the name of the output
+      files.
+      Remove fossil files and update documentation.
+    ------------------------------------------------------------
+    revno: 515.2.4
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-stm
+    timestamp: Wed 2017-05-31 11:14:05 +0200
+    message:
+      Add test for si001-ldos. Extra lines in plstm
+      
+      Added a new test to compute the LDOS for the si001-H test, to
+      exercise the 'simple' STM program.
+      
+      In plstm, print a blank line after every set of x scans, so that
+      gnuplot can work better in 'surface/contour' mode.
+    ------------------------------------------------------------
+    revno: 515.2.3
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-stm
+    timestamp: Mon 2017-05-08 19:17:07 +0200
+    message:
+      Update manual
+    ------------------------------------------------------------
+    revno: 515.2.2
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-stm
+    timestamp: Sun 2017-02-19 02:42:12 +0100
+    message:
+      Fix fftw plan bug
+    ------------------------------------------------------------
+    revno: 515.2.1
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-stm
+    timestamp: Sun 2017-02-19 02:35:38 +0100
+    message:
+      Use wfsx instead of wfs
+------------------------------------------------------------
+revno: 522 [merge]
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Fri 2017-06-30 15:48:40 +0200
+message:
+  Add extra logging and control capabilities
+  
+  A number of extra control and logging features have been implemented
+  to facilitate the use of Siesta within automated computational
+  frameworks, notably the AiiDA platform.
+  
+  - A new file 'MESSAGES' holds a summary of warnings and possible errors.
+  
+    Calls to 'die' now print a line in MESSAGES with a 'FATAL' prefix, and
+    then perform an orderly closing of the CML file, and flush stdout and
+    stderr, before actually terminating the program.
+  
+    The routine 'message(level,str)' also prints an appropriate line in
+    MESSAGES.
+  
+  - Optional termination if geometry is not converged
+    
+    If the flag 'Geometry.Must.Converge' is .true., the
+    program will terminate if the geometry relaxation is
+    not converged, before carrying out any final analysis.
+  
+  - Enhancements to the CML interface
+  
+    Add routine print_spin and call it at every geometry step. The final
+    call in 'siesta_analysis' is preserved for backwards compatibility.
+  
+    Put energies in 'scf finalization' module in the CML file
+  
+    Write stress to CML file at each geometry step
+  
+    Close properly the CML stack before 'die'ing.
+  
+  - Add a simple interface to check wall-clock time
+    
+    A new module 'm_check_walltime' provides a routine
+    'check_walltime' and exports variables 'walltime_max'
+    and 'walltime_warning'.
+    
+    Users can request walltime control by means of the
+    fdf variables:
+    
+    Max.Walltime N   # in seconds, default infinity
+    Max.Walltime.Slack    # in seconds
+    
+    Typically, the first would be set automatically by inheritance
+    from the queuing system or AiiDA script. The second should give
+    an estimate of the time needed for cleanup operations. The default
+    is 5 seconds.
+    
+    Currently, the 'check_walltime' routine is invoked at the end of
+    every SCF step, and at the end of every geometry step.
+  
+  - Fixes for compilation
+    
+    Use a 'local_sys.{f,F}' file in Util programs and
+    SiestaXC to decouple them from the extra functionality
+    in the top-level sys.F file (particularly the CML closing
+    operations).
+    
+    Remove the dependency of 'alloc.o' on 'debugmpi'.
+    
+    Add '.c' to .SUFFIXES in 'arch.make.in' 
+  
+  - Add arch.make suitable for fortran-mpi Docker image
+  
+    (Experimental)
+    ------------------------------------------------------------
+    revno: 515.1.18
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Fri 2017-06-30 10:48:45 +0200
+    message:
+      Remove contents of MESSAGES file at initialization
+    ------------------------------------------------------------
+    revno: 515.1.17 [merge]
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Fri 2017-06-30 10:31:34 +0200
+    message:
+      Sync to 4.0--521
+    ------------------------------------------------------------
+    revno: 515.1.16
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Mon 2017-05-15 15:06:32 +0200
+    message:
+      Enhance the MESSAGES interface
+      
+      A number of enhancements (design still fluid):
+      
+      -- Upon a termination due to time limit, the scf convergence
+         is also checked, and another (fatal) error can be raised.
+      
+      -- A similar check for geometry convergence in the time-limit
+         check in 'siesta_move'.
+    ------------------------------------------------------------
+    revno: 515.1.15
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Mon 2017-05-15 11:49:08 +0200
+    message:
+      Document walltime warnings. Set slack to 5 seconds
+    ------------------------------------------------------------
+    revno: 515.1.14
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Wed 2017-03-22 12:03:31 +0100
+    message:
+      Add arch.make suitable for fortran-mpi Docker image
+    ------------------------------------------------------------
+    revno: 515.1.13
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Sun 2017-03-12 02:08:18 +0100
+    message:
+      Fixes for compilation
+      
+      Use a 'local_sys.{f,F}' file in Util programs and
+      SiestaXC to decouple them from the extra functionality
+      in the top-level sys.F file (particularly the CML closing
+      operations).
+      
+      Remove the dependency of 'alloc.o' on 'debugmpi'.
+      
+      Add '.c' to .SUFFIXES in 'arch.make.in' 
+    ------------------------------------------------------------
+    revno: 515.1.12
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Sun 2017-03-12 00:41:00 +0100
+    message:
+      Remove empty directories. Put README in Obj
+    ------------------------------------------------------------
+    revno: 515.1.11
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Sun 2017-03-12 00:39:35 +0100
+    message:
+      Shorten a line in siesta_forces
+    ------------------------------------------------------------
+    revno: 515.1.10
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Fri 2017-03-10 12:49:48 +0100
+    message:
+      Add mnemonic codes scf and time warnings and errors
+    ------------------------------------------------------------
+    revno: 515.1.9
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Wed 2017-03-08 10:53:39 +0100
+    message:
+      Remove cml dependency in SiestaXC
+    ------------------------------------------------------------
+    revno: 515.1.8
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Wed 2017-03-08 10:32:06 +0100
+    message:
+      Add cml in SiestaXC
+    ------------------------------------------------------------
+    revno: 515.1.7
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Sun 2017-03-05 20:42:40 +0100
+    message:
+      Optional termination if geometry is not converged
+      
+      If the flag 'Geometry.Must.Converge' is .true., the
+      program will terminate if the geometry relaxation is
+      not converged, before carrying out any final analysis.
+    ------------------------------------------------------------
+    revno: 515.1.6
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Sun 2017-03-05 17:38:31 +0100
+    message:
+      Add routine print_spin and call it at every geometry step
+      
+      The final call in 'siesta_analysis' is preserved for backwards
+        compatibility.
+    ------------------------------------------------------------
+    revno: 515.1.5
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Sat 2017-03-04 01:04:01 +0100
+    message:
+      Put energies in 'scf finalization' module in the CML file
+    ------------------------------------------------------------
+    revno: 515.1.4
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Fri 2017-03-03 11:51:05 +0100
+    message:
+      Write stress to CML file at each geometry step
+    ------------------------------------------------------------
+    revno: 515.1.3
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Fri 2017-02-24 12:43:01 +0100
+    message:
+      Add a simple interface to check wall-clock time
+      
+      A new module 'm_check_walltime' provides a routine
+      'check_walltime' and exports variables 'walltime_max'
+      and 'walltime_warning'.
+      
+      Users can request walltime control by means of the
+      fdf variables:
+      
+      Max.Walltime N   # in seconds, default infinity
+      Max.Walltime.Slack    # in seconds
+      
+      Typically, the first would be set automatically by inheritance
+      from the queuing system or AiiDA script. The second should give
+      an estimate of the time needed for cleanup operations. By default,
+      it is one minute per 100 atoms, with a minimum of 10 seconds.
+      
+      Currently, the 'check_walltime' routine is invoked at the end of
+      every SCF step, and at the end of every geometry step.
+    ------------------------------------------------------------
+    revno: 515.1.2
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Tue 2017-02-21 17:12:49 +0100
+    message:
+      Close properly the CML stack
+    ------------------------------------------------------------
+    revno: 515.1.1
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-aiida
+    timestamp: Tue 2017-02-21 15:47:11 +0100
+    message:
+      Use MESSAGES file as summary
+------------------------------------------------------------
+revno: 521
+fixes bug: https://launchpad.net/bugs/1685169
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Fri 2017-04-21 22:13:48 +0200
+message:
+  Fixed initialization of interpolation variable and reduction variable
+  
+  This fixes lp:1685169.
+  The bug occurs when siesta has been compiled with:
+     -ffpe-trap=invalid,zero,overflow,underflow,denormal
+  which signals an SIGFPE.
+  Typically these things are hidden when compiling normally and one
+  should, probably, not be concerned.
+------------------------------------------------------------
+revno: 520
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Mon 2017-02-27 09:01:37 +0100
+message:
+  Updated Eig2DOS, now it is more consistent with the gnubands.f90 file
+  
+  Changed:
+  -m => -e (makes more sense that small e is lower energy bound as used in gnubands)
+  -M => -E (makes more sense that small e is lower energy bound as used in gnubands)
+    (note that -m and -M are still workable)
+  the old -e is not used anymore, however, if -d (debug) is enabled it works the same.
+  -F is now equivalent to -f (as -F is used in gnubands).
+  
+  It now also checks whether the supplied KP file exists.
+------------------------------------------------------------
+revno: 519
+fixes bug: https://launchpad.net/bugs/1666428
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Tue 2017-02-21 08:36:32 +0100
+message:
+  Forced ParallelOverK to false if non-collinear spin
+  
+  Now Diag.ParallelOverK is forced to .false. if non-collinear
+  spin is used.
+  
+  This fixes lp:1666428
+------------------------------------------------------------
+revno: 518
+fixes bug: https://launchpad.net/bugs/1666219
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Mon 2017-02-20 15:34:22 +0100
+message:
+  Fixed averaging of the electri-field energy contribution with GridCellSampling
+  
+  The energy from the external electric field was not added. It does not 
+  matter for a true electric field, however when a dipole correction is
+  in place the electric field may vary slightly and introduce corrections
+  to the energy. This is now fixed.
+  
+  This fixes lp:1666219
+------------------------------------------------------------
+revno: 517
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Sun 2017-02-19 20:26:15 +0100
+message:
+  Memory leak fixed in spher_harm.f
+  
+  A memory leak was discovered using valgrind:
+    valgrind --track-origins=yes --leak-check=full siesta
+  
+  A pointer array was nullified and re-allocated in certain cases
+------------------------------------------------------------
+revno: 516
+fixes bug: https://launchpad.net/bugs/1665294
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Fri 2017-02-17 14:17:03 +0100
+message:
+  Work around reshape in mesh3d for SiestaXC
+  
+  This fixes: lp:1665294
+  
+  Instead of doing reshape, we implement direct loops with
+  an interface for copying, and one for adding.
+  This should limit the heap memory consumption.
+  
+  I have tested this on 10 of the tests in the test directory,
+  with no changes (however, only on 2 cores).
+  Before releasing 4.0.1 we should rerun all tests.
+------------------------------------------------------------
+revno: 515 [merge]
+fixes bug: https://launchpad.net/bugs/1656273
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Fri 2017-02-17 11:12:00 +0100
+message:
+  Fix bug #1656273: Inappropriate model core charges for Bader analysis
+  
+  Use always a gaussian-like model function to simulate the charge of
+  the core electrons that is added to the pseudo charge for Bader
+  analysis. The previous method, based on re-scaling chlocal, could
+  sometimes introduce spurious local maxima in the total charge density
+  that confuse the Bader algorithm.
+  
+  (Thanks to Seyed Mohammad Tabatabaei for reporting the issue)
+  
+  Also, add a new option 'Analyze.Charge.Density.Only', with which the
+  program generates charge density files and computes partial atomic
+  charges (Hirshfeld, Voronoi, Bader) from the information in the input
+  density matrix, and stops.  This is useful to analyze the properties
+  of the charge density without a diagonalization step (just with a
+  pre-existing density-matrix), and with a user-selectable mesh cutoff.
+    ------------------------------------------------------------
+    revno: 509.1.3
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-bader
+    timestamp: Mon 2017-01-23 17:29:14 +0100
+    message:
+      Add option to analyze charge density and stop
+    ------------------------------------------------------------
+    revno: 509.1.2
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-bader
+    timestamp: Mon 2017-01-23 17:18:35 +0100
+    message:
+      Put fake core charge on hydrogens
+    ------------------------------------------------------------
+    revno: 509.1.1
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-bader
+    timestamp: Mon 2017-01-23 15:14:53 +0100
+    message:
+      New algorithm. No hydrogens
+------------------------------------------------------------
+revno: 514
+fixes bug: https://launchpad.net/bugs/1661562
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Fri 2017-02-03 11:31:06 +0100
+message:
+  Added check for space in SystemLabel, fixes lp:1661562
+  
+  Now SIESTA dies if the systemlabel has a space in it.
+------------------------------------------------------------
+revno: 513
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Thu 2017-02-02 12:01:48 +0100
+message:
+  Differences between tbtrans and tbtrans_rep
+  
+  This fixes some differences reported between the
+  tbtrans and tbtrans_rep codes.
+  Essentially the difference was due to the integration points
+  which were not distributed equivalently in the two examples.
+  Now the contours are equivalent. There are still differences
+  but those may be "ironed" out by increasing the number of
+  integration points. So these are merely numerical artefacts.
+  
+  Secondly, the tbtrans_rep output printed energies in eV but
+  the DOS was in 1/Ry, this is now fixed. Although it should not
+  matter because it is the relative values that are important.
+------------------------------------------------------------
+revno: 512
+fixes bug: https://launchpad.net/bugs/1660553
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Tue 2017-01-31 09:31:37 +0100
+message:
+  Changed a touch statement to prevent certain crashes
+  
+  Now the creation of the 0_NORMAL_EXIT file is made in
+  pure fortran which should prohibit certain failures.
+  This should fix: lp:1660553
+------------------------------------------------------------
+revno: 511
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Wed 2017-01-25 19:38:03 +0100
+message:
+  Ensured the transport points are using the mid-rule
+  
+  Previously it was the left rule which is not optimal.
+------------------------------------------------------------
+revno: 510
+fixes bug: https://launchpad.net/bugs/1658518
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Wed 2017-01-25 11:40:33 +0100
+message:
+  Fixed bug related to PGI compiler
+  
+  A list of derived type was public, whereas the derived type was
+  private. This is not allowed.
+  
+  Fixes lp:1658518
+------------------------------------------------------------
+revno: 509
+fixes bug: https://launchpad.net/bugs/1657584
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Thu 2017-01-19 07:44:08 +0100
+message:
+  Fixed checking the correct reals in ProjectedDensityOfStates
+  
+  This is necessary as the fdf_bvalues where not differentiating 
+  between reals and integers. However, there is a specific
+  integer read after reals which forces the reals to be read as reals.
+  
+  This fixes lp:1657584
+------------------------------------------------------------
+revno: 508
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Mon 2016-12-05 14:15:01 +0100
+message:
+  Updated documentation compilation
+  
+  The documentation compilation required additional
+  steps to converge the resulting index.
+------------------------------------------------------------
+revno: 507 [merge]
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Sun 2016-11-27 20:55:12 +0100
+message:
+  Merged cell-sampling print-out
+  
+  Added print-outs of the difference from the averaged forces
+  to figure out if it is really important or not.
+    ------------------------------------------------------------
+    revno: 506.1.2
+    committer: Nick Papior <nickpapior@gmail.com>
+    branch nick: 4.0-cell-sampling
+    timestamp: Sat 2016-11-26 09:11:06 +0100
+    message:
+      Moved calculation of the displacements out grdsam
+      
+      The grdsam displacements where not optimally calculated.
+    ------------------------------------------------------------
+    revno: 506.1.1
+    committer: Nick Papior <nickpapior@gmail.com>
+    branch nick: 4.0-cell-sampling
+    timestamp: Fri 2016-11-25 19:48:56 +0100
+    message:
+      Added print-out of maximum force difference in grdsam
+      
+      This enables one to more easily figure out if the grid
+      sampling is required or not.
+      siesta now also prints the standard-deviation.
+      We have found that in certain systems (a Cu-Ni slab-alloy)
+      the forces were highly unsymmetric (where they should have
+      been symmetric). The solution was to grid-cell-sample
+      along the normal vector to the surface. This helped
+      alot and fixed the problem, however, before doing a
+      fine-mesh sampling it can be nice to get a feel for it
+      using very few points.
+------------------------------------------------------------
+revno: 506
+fixes bug: https://launchpad.net/bugs/1633039
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Tue 2016-11-15 11:15:49 +0100
+message:
+  Fixes the VCA mixing of pseudos, lp:1633039
+  
+  A simple extension of the grid is made by copying
+  the last value if the interpolated grid is too small.
+------------------------------------------------------------
+revno: 505
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Mon 2016-10-31 14:12:24 +0100
+message:
+  Declare all variables
+  
+  Some variables were not properly declared. This can
+  cause errors if a compiler flag to catch implicit typing
+  is used.
+  
+  Except in file Util/TBtrans/cdiag_local.F, all variables
+  are now declared.
+------------------------------------------------------------
+revno: 504
+fixes bug: https://launchpad.net/bugs/1636100
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Mon 2016-10-24 09:27:38 +0200
+message:
+  Fixes non-colinear band calculation, fixes lp:1636100
+  
+  The interface call for diag2k was erroneous in non-colinear call.
+------------------------------------------------------------
+revno: 503
+fixes bug: https://launchpad.net/bugs/1625725
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Thu 2016-10-13 14:49:05 +0200
+message:
+  Fix bug 1625725 in 'nodes' basis-generation option
+  
+  A bug was introduced in revno 436: the number of nodes and the
+  principal quantum number was off by one.  It has now been fixed.
+  
+  Note however that the preferred way to generate basis sets in Siesta
+  is the default 'split' scheme.
+  
+  (Thanks to Seungchul Kim for reporting the issue)
+  
+  
+  
+  
+  	
+------------------------------------------------------------
+revno: 502
+fixes bug: https://launchpad.net/bugs/1630827
+committer: Nick Papior <nickpapior@gmail.com>
+branch nick: 4.0
+timestamp: Thu 2016-10-06 09:25:28 +0200
+message:
+  Did not allow user control of SlabDipoleCorrection, fixes lp:1630827
+  
+  For backwards compatibility it is nice to be able to turn off the 
+  SlabDipolecorrection such that one can compare against older versions.
+  This was a mistake.
+------------------------------------------------------------
+revno: 501 [merge]
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Tue 2016-09-13 14:00:42 +0200
+message:
+  Changes to further standards compliance
+  
+  Brought about by the use of extra compiler checks, notably by g95 and
+  the '-std=f2003 -fall-intrinsics' setting in gfortran.
+  
+  Apart from syntax and visibility issues, non-standard declarations
+  such as "real*8" have been removed.
+  
+  Also, the building of the MPI interfaces has been updated to properly
+  include 8-byte integers.
+  
+  (Declarations in the code in Util are not fully updated yet)
+  		
+  
+  	
+    ------------------------------------------------------------
+    revno: 500.1.6
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-ag
+    timestamp: Tue 2016-09-13 12:36:39 +0200
+    message:
+      Fix typo in Denchar routine
+    ------------------------------------------------------------
+    revno: 500.1.5
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-ag
+    timestamp: Tue 2016-09-13 11:42:56 +0200
+    message:
+      Update declarations in zheevds
+    ------------------------------------------------------------
+    revno: 500.1.4
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0-ag
+    timestamp: Tue 2016-09-13 07:41:26 +0200
+    message:
+      Consolidate interface imports in mpi_siesta
+    ------------------------------------------------------------
+    revno: 500.1.3
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0
+    timestamp: Mon 2016-09-12 15:30:18 +0200
+    message:
+      Fix Util/WFS
+    ------------------------------------------------------------
+    revno: 500.1.2
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0
+    timestamp: Mon 2016-09-12 15:22:53 +0200
+    message:
+      Update MPI int kind handling
+    ------------------------------------------------------------
+    revno: 500.1.1
+    committer: Alberto Garcia <albertog@icmab.es>
+    branch nick: 4.0
+    timestamp: Fri 2016-09-09 17:12:09 +0200
+    message:
+      Fixes for further standards compliance
+      
+      Some changes were needed to allow compilation with g95, which has
+      stricter checks than other compilers in some areas.
+      
+      Non-standard specifications such as real*8 and integer*8 are being
+      progressively removed.
+------------------------------------------------------------
+revno: 500
+tags: 4.0-release, v4.0
+committer: Alberto Garcia <albertog@icmab.es>
+branch nick: 4.0
+timestamp: Thu 2016-06-23 12:02:59 +0200
+message:
+  Release of siesta-4.0
+  
+  * Update Docs/release_notes.4.0
+  
+  * Update list of contributors.
+  
+  * Add some more documentation and comments, and clarify notes in
+    output for the recet electric-field/slab-dipole-correction fix.
+  
+  * Remove Util/pseudo-xml
+  
+  * Other minor changes in README files
+  
+  
+    
+  		
+  
+  	
