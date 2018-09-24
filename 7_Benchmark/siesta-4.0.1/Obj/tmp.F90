@@ -30,9 +30,9 @@ integer, dimension(3), save  :: num_version = (/0,0,0/)
 character(len=*), parameter :: version_str =  &
 "siesta-4.0--530"
 character(len=*), parameter :: siesta_arch= &
-"gfortran-nolibs"
+"intel"
 character(len=*), parameter :: fflags= &
-"gfortran -O3 -msse4a -m3dnow -fexpensive-optimizations -m64 -foptimize-register-move -funroll-loops -ffast-math"
+"ifort -O0 -zero -mp1 -xSSE3 -xSSE4.2 -xHost"
 character(len=*), parameter :: fppflags= &
 "-DGFORTRAN -DFC_HAVE_FLUSH -DFC_HAVE_ABORT           "
 

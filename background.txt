@@ -1,0 +1,12 @@
+/programa.x  		->  trava o terminal
+/programa.x  -f		->  rodar no fundo
+
+fg=foregroud?
+bg=background
+
+ctrl+shift+R = reverse command
+ctrl+R
+
+------------------------------------------
+ssh teste@192.168.2.251		senha:teste
+

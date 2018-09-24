@@ -1,4 +1,4 @@
-#Compilar siesta
+# Compilar siesta
 
 - gfortran + O0 O1 O2 O3
 - gfortran + O's + flags(-msse4a -m3dnow)

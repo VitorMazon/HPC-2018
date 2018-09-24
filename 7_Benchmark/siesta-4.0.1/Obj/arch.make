@@ -5,15 +5,15 @@
 #  or http://www.gnu.org/copyleft/gpl.txt.
 # See Docs/Contributors.txt for a list of contributors.
 #
-SIESTA_ARCH=gfortran-nolibs
+SIESTA_ARCH=intel
 #
 # Serial compilation without the need of any installed libraries.
 #
-FC=gfortran
+FC=ifort
 #
 FC_ASIS=$(FC)
 #
-FFLAGS= -O3 -msse4a -m3dnow -fexpensive-optimizations -m64 -foptimize-register-move -funroll-loops -ffast-math
+FFLAGS= -O1 -zero -mp1 -xSSE3 -xSSE4.2 -xHost
 FFLAGS_DEBUG= -g -Wall -Wextra
 LDFLAGS=
 RANLIB=echo

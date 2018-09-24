@@ -1,0 +1,11 @@
+1)Copiar o arquivo density.tgz hpc@192.168.3.107
+2)Descompactar em uma pasta
+
+	devmol.XSF
+	dev.XSF
+	mol.XSF
+3)Calcular a diferença da soma
+	soma=dev+mol
+	diferenca=devmol-soma
+MOntar cabeçalho e tail, usar grep. Usar paste para montar 12 colunas e soma-las, 1 com  7, 2 com 8, etc.
+acesso de casa no computador da uff, tix?

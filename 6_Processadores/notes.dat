@@ -1,0 +1,29 @@
+->nfs e nis?
+https://www.vivaolinux.com.br/artigo/Servidor-NIS+NFS-Aprenda-a-montar-o-seu
+
+->Processador só faz as operações de soma e multiplicação
+	->possivel otimizar tempo para códigos grandes ex.: (x³/4 = x*x*x*0.25)
+
+->Terminal:
+	top	gnuplot
+	
+	possibilidade de mudar prioridades rodar no sistema
+
+->Arquiteturas de processadores
+	IA32(Core2, OPteron)
+
+->Cada 18 meses a capacidade de processamento dobra. Lei de Moore!
+->Arquitetura Arb (celuares)
+
+->Benchmark
+
+---------------------------------------------------------------------------------------------------------
+
+->Gargalo de von Neumann: O desempenho do computador é limitado pela velocidade de acesso a memória.
+
+->Memória cache (dentro do processador), quanto maior, melhor.
+->Procurar melhor Chipset para processador
+
+->Rede rápida e latência boa! Prestar atenção na latência.
+
+->cat /proc/
