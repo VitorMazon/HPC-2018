@@ -6,8 +6,8 @@
 
 for i in 0 1 2 3
  do
-  siesta-$i.x < benzene.fdf > saida.out
+  siesta-flags-$i.x < benzene.fdf > saida.out
   rm *.DM *.XV *.CG
   tempo=$(grep 'Elapsed wall time (sec)' saida.out | cut -d = -f 2)
-  echo $i '  ' $tempo >> gf-tempo.dat
+  echo $i '  ' $tempo >> gf-flags-tempo.dat
 done
