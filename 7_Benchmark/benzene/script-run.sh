@@ -4,10 +4,10 @@
 #   Script para rodar siesta e criar um aquivo com o  tempo de execucao
 # =======================================================================
 
-for i in 0 1 2 3
+for i in 2 3
  do
-  siesta-flags-$i.x < benzene.fdf > saida.out
+  siesta-intel-$i.x < benzene.fdf > saida.out
   rm *.DM *.XV *.CG
   tempo=$(grep 'Elapsed wall time (sec)' saida.out | cut -d = -f 2)
-  echo $i '  ' $tempo >> gf-flags-tempo.dat
+  echo $i '  ' $tempo >> intel-flags-tempo.dat
 done
