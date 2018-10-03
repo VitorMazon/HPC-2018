@@ -15,8 +15,8 @@ SIESTA_ARCH=intel-mkl
 FC=ifort  
 #
 MKLROOT=/opt/intel/compilers_and_libraries/linux/mkl
-#FFLAGS=-w -O3 -ipo -zero -mp1 -m64 -axSSE4.2 -i8 -I${MKLROOT}/include
-FFLAGS= -O3 -w -zero -mp1 -m64 -axSSS3 
+#FFLAGS=-w XYX -ipo -zero -mp1 -m64 -axSSE4.2 -i8 -I${MKLROOT}/include
+FFLAGS= XYX -w -zero -mp1 -m64 -axSSS3 
 #-zero -mp1 -axsse3 -fast  
 FFLAGS_DEBUG= -g 
 LDFLAGS= 
