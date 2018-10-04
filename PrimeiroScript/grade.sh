@@ -10,6 +10,6 @@ sed "1,61d" aux.XSF > col2.XSF
 rm aux.XSF
 rm gap.XSF
 
-paste
+#paste
 
-$(paste <(awk '{printf "%12.6f \n", $2}' col1.XSF))
+paste < (awk '{printf "%12.6f \n", $1}' col1.XSF) < (awk '{printf "%12.6\n", $1}' col2.XSF) > fim.dat
