@@ -5,40 +5,22 @@
 #  or http://www.gnu.org/copyleft/gpl.txt.
 # See Docs/Contributors.txt for a list of contributors.
 #
-SIESTA_ARCH=intel-mkl
+SIESTA_ARCH=intel
 #
-# Intel fortran compiler for linux with mkl optimized blas and lapack
+# Serial compilation without the need of any installed libraries.
 #
-# Be sure to experiment with different optimization options.
-# You have quite a number of combinations to try...
+FC=ifort
 #
-FC=ifort  
+FC_ASIS=$(FC)
 #
-MKLROOT=/opt/intel/compilers_and_libraries/linux/mkl
-#FFLAGS=-w XYX -ipo -zero -mp1 -m64 -axSSE4.2 -i8 -I${MKLROOT}/include
-FFLAGS= XYX -w -zero -mp1 -m64 -axSSS3 
-#-zero -mp1 -axsse3 -fast  
-FFLAGS_DEBUG= -g 
-LDFLAGS= 
-COMP_LIBS=
+FFLAGS= XYX
+FFLAGS_DEBUG= -g -Wall -Wextra
+LDFLAGS=
 RANLIB=echo
-#
-NETCDF_LIBS=
-NETCDF_INTERFACE=
-FPPFLAGS_CDF=
-#
-MPI_INTERFACE=
-MPI_INCLUDE=
-FPPFLAGS_MPI=
-#
-GUIDE=/opt/intel/mkl/lib/32/libguide.a
-LAPACK=/opt/intel/mkl/lib/32/libmkl_lapack.a
-BLAS=/opt/intel/mkl/lib/32/libmkl_p3.a
-#G2C=/usr/lib/gcc-lib/i386-redhat-linux/2.96/libg2c.a
-LIBS=$(LAPACK) $(BLAS) $(G2C) $(GUIDE)  -lpthread 
-LIBS=-Wl,--start-group ${MKLROOT}/lib/intel64/libmkl_intel_ilp64.a ${MKLROOT}/lib/intel64/libmkl_sequential.a ${MKLROOT}/lib/intel64/libmkl_core.a -Wl,--end-group -lpthread -lm -ldl
-SYS=bsd
-FPPFLAGS= $(FPPFLAGS_CDF) $(FPPFLAGS_MPI)
+LIBS=  
+SYS=nag
+FPPFLAGS=-DGFORTRAN -DFC_HAVE_FLUSH -DFC_HAVE_ABORT          # Note this !!
+COMP_LIBS=linalg.a
 #
 .F.o:
 	$(FC) -c $(FFLAGS) $(INCFLAGS)  $(FPPFLAGS) $<
@@ -49,11 +31,4 @@ FPPFLAGS= $(FPPFLAGS_CDF) $(FPPFLAGS_MPI)
 .f90.o:
 	$(FC) -c $(FFLAGS) $(INCFLAGS)   $<
 #
-
-
-
-
-
-
-
 
