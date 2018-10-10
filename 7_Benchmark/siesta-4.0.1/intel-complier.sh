@@ -1,8 +1,13 @@
 #!/bin/bash
-#APRIMORAR: JOGAR O COMPILADO PARA A PASTA /bin PARA QUANDO FOR RODAR
-# =========================================================================================
-#  Script para modificar arch.make e complilar o programa com diferentes flags para ifort
-# =========================================================================================
+# ===================================================================================================
+#  Script para modificar arch.make e complilar o programa com diferentes flags para compilador ifort
+# ===================================================================================================
+
+# verifica se pasta /bin existe na home e a cria se não existir
+# /bin usado para deixar os compilados do siesta
+if [ ! -d "~/bin" ]; then
+  mkdir ~/bin
+fi
 
 #------------------------------------
 #---------Intel sem flags------------
@@ -18,6 +23,7 @@ cd Obj-i
    sed "s/ XYX/ -O$i/g" arch.intel > arch.make
    make
    cp siesta siesta-intel-$i.x
+   mv siesta-intel-$i.x ~/bin
    make clean
    mv arch.make arch-intel-$i
  done
@@ -38,6 +44,7 @@ cd Obj-i-flags
    sed "s/ XYX/ -O$i/g" arch.intel-flags > arch.make
    make
    cp siesta siesta-intel-flags-$i.x
+   mv siesta-intel-flags-$i.x ~/bin
    make clean
    mv arch.make arch-intel-flags-$i
  done
@@ -58,9 +65,9 @@ cd Obj-i-mkl
    sed "s/ XYX/ -O$i/g" arch.intel-mkl > arch.make
    make
    cp siesta siesta-intel-mkl-$i.x
+   mv siesta-intel-mkl-$i.x ~/bin
    make clean
    mv arch.make arch-intel-mkl-$i
  done
  
 cd ..
-

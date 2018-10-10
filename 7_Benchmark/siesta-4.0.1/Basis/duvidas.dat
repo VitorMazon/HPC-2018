@@ -1,13 +1,34 @@
 1) Quais flags utilizar para esta máquina?
 
-flags utilizadas : -zero -mp1 -xSSE3 -xSSE4.2 -xHost -ipo
+Flags utilizadas para AMD: -zero -mp1 -xSSE3 -xSSE4.2 -xHost -ipo
 
-
-----------------------------Dados da máquina---------------------------------
-
-model name	: Intel(R) Core(TM) i3-4030U CPU @ 1.90GHz
-flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm epb invpcid_single ssbd ibrs ibpb stibp kaiser tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid xsaveopt dtherm ida arat pln pts flush_l1d
-
+Flags para utilizar intel: -zero -mp1 -ipo -xHost
 
 2) Como utilizar mkl? Não tenho o arquivo com mkl instalado na minha máquina.
 mkl advisor (intel)
+R.: Vem com ifort q instala no opt
+	opt/intel/compilers_and_libraries/linux/mkl/bin/
+	source compilervar.sh intel64
+	sh mklvars.sh
+
+Na máquina da uff:
+---------------------------------------------------------------------------------
+source /opt/intel/compilers_and_libraries/linux/bin/compilervars.sh intel64
+
+source /opt/intel/compilers_and_libraries/linux/mkl/bin/mklvars.sh intel64 lp64
+
+source /opt/intel/compilers_and_libraries/linux/mpi/bin64/mpivars.sh
+
+export PATH=$PATH:/home/hpc/bin:
+--------------------------------------------------------------------------------
+
+3) Como baixar ifort?
+R.:	non-commercial ifort
+	student version
+	parallel studio
+	arquivo grande!
+
+4) Arquivos para benzeno
+C.psf
+H.psf
+benzene.fdf
