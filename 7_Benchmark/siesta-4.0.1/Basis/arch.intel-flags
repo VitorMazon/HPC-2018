@@ -13,7 +13,7 @@ FC=ifort
 #
 FC_ASIS=$(FC)
 #
-FFLAGS= XYX -zero -mp1 -xSSE3 -xSSE4.2 -xHost -ipo
+FFLAGS= XYX -zero -mp1 -xHost -ipo
 FFLAGS_DEBUG= -g -Wall -Wextra
 LDFLAGS=
 RANLIB=echo

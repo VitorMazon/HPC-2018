@@ -19,7 +19,7 @@ source /opt/intel/compilers_and_libraries/linux/mkl/bin/mklvars.sh intel64 lp64
 
 source /opt/intel/compilers_and_libraries/linux/mpi/bin64/mpivars.sh
 
-export PATH=$PATH:/home/hpc/bin:
+export PATH=$PATH:/home/vitor/bin:
 --------------------------------------------------------------------------------
 
 3) Como baixar ifort?

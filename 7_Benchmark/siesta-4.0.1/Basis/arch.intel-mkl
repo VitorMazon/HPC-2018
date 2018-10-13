@@ -16,7 +16,7 @@ FC=ifort
 #
 MKLROOT=/opt/intel/compilers_and_libraries/linux/mkl
 #FFLAGS=-w XYX -ipo -zero -mp1 -m64 -axSSE4.2 -i8 -I${MKLROOT}/include
-FFLAGS= XYX -w -zero -mp1 -m64 -axSSS3 
+FFLAGS= XYX -w -zero -mp1 -m64 -xHost 
 #-zero -mp1 -axsse3 -fast  
 FFLAGS_DEBUG= -g 
 LDFLAGS= 
