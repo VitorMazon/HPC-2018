@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml convention="CMLComp" fileId="benzene.xml" xmlns="http://www.xml-cml.org/schema" xmlns:siesta="http://www.uam.es/siesta/namespace" xmlns:siestaUnits="http://www.uam.es/siesta/namespace/units" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fpx="http://www.uszla.me.uk/fpx" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:units="http://www.uszla.me.uk/FoX/units" xmlns:cmlUnits="http://www.xml-cml.org/units/units" xmlns:siUnits="http://www.xml-cml.org/units/siUnits" xmlns:atomicUnits="http://www.xml-cml.org/units/atomic">
-  <metadata name="UUID" content="2a1a99f0-cc70-11e8-421b-7b44fefff575"/>
+  <metadata name="UUID" content="8f8255e0-cf35-11e8-4b5d-c31ccd7fec8c"/>
   <metadataList>
     <metadata name="siesta:Program" content="Siesta"/>
     <metadata name="siesta:Version" content="siesta-4.0--530"/>
-    <metadata name="siesta:Arch" content="gfortran-nolibs"/>
-    <metadata name="siesta:Flags" content="gfortran -O0"/>
-    <metadata name="siesta:StartTime" content="2018-10-10T09-37-31"/>
+    <metadata name="siesta:Arch" content="intel"/>
+    <metadata name="siesta:Flags" content="ifort -O3 -zero -mp1 -xHost -ipo"/>
+    <metadata name="siesta:StartTime" content="2018-10-14T01-15-35"/>
     <metadata name="siesta:Mode" content="Serial"/>
     <metadata name="siesta:Nodes" content="         1"/>
     <metadata name="siesta:NetCDF" content="false"/>
@@ -202,3 +202,9 @@
         <scalar dataType="fpx:real" units="siestaUnits:Ry">3.500000000000e2</scalar>
       </property>
       <property dictRef="siesta:g2mesh" title="Actual Cut-Off">
+        <scalar dataType="fpx:real" units="siestaUnits:Ry">3.648731382563e2</scalar>
+      </property>
+    </propertyList>
+    <module serial="1" dictRef="SCF" role="step"/>
+  </module>
+</cml>

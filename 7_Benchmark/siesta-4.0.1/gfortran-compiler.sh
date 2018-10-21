@@ -17,20 +17,20 @@ if [ ! -d "$DIRECTORY" ]; then
   mkdir ~/bin
 fi
 
-mkdir Obj-g
-cd Obj-g
- sh ../Src/obj_setup.sh
- cp ../Basis/arch.gf .
- for i in 0 1 2 3
-  do
-   sed "s/ XYX/ -O$i/g" arch.gf > arch.make
-   make
-   cp siesta siesta-gf-$i.x
-   mv siesta-gf-$i.x ~/bin
-   make clean
-   mv arch.make arch-gf-$i
- done
-cd ..
+#mkdir Obj-g
+#cd Obj-g
+# sh ../Src/obj_setup.sh
+# cp ../Basis/arch.gf .
+# for i in 0 1 2 3
+#  do
+#   sed "s/ XYX/ -O$i/g" arch.gf > arch.make
+#   make
+#   cp siesta siesta-gf-$i.x
+#   mv siesta-gf-$i.x ~/bin
+#   make clean
+#   mv arch.make arch-gf-$i
+# done
+#cd ..
 
 mkdir Obj-g-flags
 cd Obj-g-flags

@@ -2,9 +2,12 @@
 
 # Script para fazer benchmark com siesta
 
-sh ./siesta-4.0.1/gfortran-compiler.sh
-sh ./siesta-4.0.1/intel-compiler.sh
+cd siesta-4.0.1
+sh gfortran-compiler.sh
+sh intel-compiler.sh
 
-sh ./benzene/run.sh
-
-sh ./benzene/time/analysis.sh
+cd ../benzene
+sh run.sh
+cd time
+sh analysis.sh
+cd ../../
