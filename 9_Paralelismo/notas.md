@@ -32,3 +32,9 @@ Métrica: Definir tamanho geral, s + p = 1, onde 's' é a parte serial e 'p' é 
 
 ## Lei de Amdahl
 Importante. Utilizar. Eficiência paralela
+
+## Lei de Gustafson
+Speedup. (serve para N pequeno)
+
+## Modelos Refinados
+Sobrecarga de comunicação. Redes infiniband.
