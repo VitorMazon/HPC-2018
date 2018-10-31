@@ -1,3 +1,9 @@
 # HPC-2018
 
--msse4a -m3dnow -fexpensive-optimizations -m64 -foptimize-register-move -funroll-loops -ffast-math
+## Benchmark siesta
+
+Benchamark feito para o benzeno, ![gráficos](/7_Benchmark/benzene/time).
+
+## Scripts
+
+Foram feitos scripts de compilação com ![gfortran](/7_Benchmark/siesta-4.0.1/gfortran-compiler.sh) e ![ifort](/7_Benchmark/siesta-4.0.1/intel-compiler.sh).
