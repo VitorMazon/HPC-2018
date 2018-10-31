@@ -25,3 +25,7 @@ Exportar o número de threads
 
 1 core pode executar mais de uma operação simultaneamente.
 Modelo Fork - Join
+
+## Observações
+Ler nos slides (openMP).
+
