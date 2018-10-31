@@ -17,3 +17,11 @@ Pool de processos (threads) - Roda instruções designadas.
 
 2. Compilação Condicional
 
+3. Compilação:
+
+Exportar o número de threads
+ - export OMP_NUM_THREADS=n
+
+
+1 core pode executar mais de uma operação simultaneamente.
+Modelo Fork - Join
