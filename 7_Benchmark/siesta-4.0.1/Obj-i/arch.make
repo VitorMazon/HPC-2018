@@ -13,7 +13,7 @@ FC=ifort
 #
 FC_ASIS=$(FC)
 #
-FFLAGS= -O0
+FFLAGS= -O3
 FFLAGS_DEBUG= -g -Wall -Wextra
 LDFLAGS=
 RANLIB=echo
