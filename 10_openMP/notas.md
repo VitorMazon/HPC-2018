@@ -29,3 +29,18 @@ Modelo Fork - Join
 ## Observações
 Ler nos slides (openMP).
 
+## Atributos comuns
+
+- Fazer o paralelismo para threads indefinidos
+- Escalonar programa para 16 threads para projeto
+- Variáves privadas dentro da parte paralela
+
+- Diretivas: PARALLEL, DO/FOR, e SECTIONS. Controlar acesso de dados.
+- Definir variáveis que tem que ser visível para todas as threads. (private, ou public)
+
+## Atributos
+
+	- Firstprivate
+	- Lastprivate
+	- Reduction
+
