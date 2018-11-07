@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml convention="CMLComp" fileId="benzene.xml" xmlns="http://www.xml-cml.org/schema" xmlns:siesta="http://www.uam.es/siesta/namespace" xmlns:siestaUnits="http://www.uam.es/siesta/namespace/units" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fpx="http://www.uszla.me.uk/fpx" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:units="http://www.uszla.me.uk/FoX/units" xmlns:cmlUnits="http://www.xml-cml.org/units/units" xmlns:siUnits="http://www.xml-cml.org/units/siUnits" xmlns:atomicUnits="http://www.xml-cml.org/units/atomic">
-  <metadata name="UUID" content="8aeafe00-dddc-11e8-7445-dfa3efff9d7c"/>
+  <metadata name="UUID" content="1c3e8f90-e23b-11e8-7a83-0fccef66d7ff"/>
   <metadataList>
     <metadata name="siesta:Program" content="Siesta"/>
     <metadata name="siesta:Version" content="siesta-4.0--530"/>
     <metadata name="siesta:Arch" content="intel"/>
-    <metadata name="siesta:Flags" content="ifort -O3"/>
-    <metadata name="siesta:StartTime" content="2018-11-01T16-46-09"/>
+    <metadata name="siesta:Flags" content="ifort -O3 -zero -mp1 -xHost -ipo"/>
+    <metadata name="siesta:StartTime" content="2018-11-07T05-13-10"/>
     <metadata name="siesta:Mode" content="Serial"/>
     <metadata name="siesta:Nodes" content="         1"/>
     <metadata name="siesta:NetCDF" content="false"/>
@@ -39,7 +39,7 @@
   </module>
   <parameterList title="Input Parameters">
     <parameter dictRef="siesta:sname" name="SystemName">
-      <scalar dataType="xsd:string">benzene</scalar>
+      <scalar dataType="xsd:string"></scalar>
     </parameter>
     <parameter dictRef="siesta:slabel" name="SystemLabel">
       <scalar dataType="xsd:string">benzene</scalar>
@@ -135,7 +135,19 @@
       <scalar dataType="fpx:real" units="siestaUnits:eSpin">0.000000000000e0</scalar>
     </parameter>
     <parameter name="MD.TypeOfRun">
-      <scalar dataType="xsd:string">Single-Point</scalar>
+      <scalar dataType="xsd:string">CG</scalar>
+    </parameter>
+    <parameter name="MD.UseSaveCG">
+      <scalar dataType="xsd:boolean">false</scalar>
+    </parameter>
+    <parameter name="MD.NumCGSteps">
+      <scalar dataType="xsd:integer" units="cmlUnits:countable">10</scalar>
+    </parameter>
+    <parameter name="MD.MaxCGDispl">
+      <scalar dataType="fpx:real" units="siestaUnits:Bohr">2.000000000000e-1</scalar>
+    </parameter>
+    <parameter name="MD.MaxForceTol">
+      <scalar dataType="fpx:real" units="siestaUnits:Ry_Bohr">1.555740000000e-3</scalar>
     </parameter>
     <parameter name="MD.BulkModulus">
       <scalar dataType="fpx:real" units="siestaUnits:Ry_Bohr__3">6.797730000000e-3</scalar>
@@ -156,7 +168,7 @@
   <property dictRef="siesta:kdispl">
     <array size="3" dataType="fpx:real" units="siestaUnits:Ang">0.000000000000e0 0.000000000000e0 0.000000000000e0</array>
   </property>
-  <module serial="1" dictRef="Single-Point" role="step">
+  <module serial="1" dictRef="Geom. Optim" role="step">
     <molecule>
       <atomArray>
         <atom elementType="C" x3="2.486229000000e0" y3="3.680000000000e0" z3="6.903229400000e0" ref="siesta:e002"/>
