@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 sed "s/COMP/gf/g" mk-data.sh > temp.sh
 chmod +x temp.sh
 sh temp.sh

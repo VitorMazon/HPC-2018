@@ -14,7 +14,7 @@
 .SUFFIXES:
 .SUFFIXES: .f .F .o .a  .f90 .F90 .c
 #
-VPATH=/home/hpc/HPC-2018/7_Benchmark/siesta-4.0.1/Src
+VPATH=/home/vitor/HPC-2018/7_Benchmark/siesta-4.0.1/Src
 #
 default: what siesta  # fsiesta_pipes.o fsiesta_sockets.o libSiestaForces.a
 #
