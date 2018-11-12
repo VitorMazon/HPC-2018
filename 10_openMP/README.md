@@ -44,3 +44,4 @@ Ler nos slides (openMP).
 	- Lastprivate
 	- Reduction
 
+
