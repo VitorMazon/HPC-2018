@@ -6,10 +6,10 @@
 
 for i in 2 3
  do
-  siesta-COMP-$i.x < benzene.fdf > saida.out
+  siesta-intel-$i.x < benzene.fdf > saida.out
   rm *.DM *.XV *.CG
   tempo=$(grep 'Elapsed wall time (sec)' saida.out | cut -d = -f 2)
-  echo $i '  ' $tempo >> COMP-tempo.dat
+  echo $i '  ' $tempo >> intel-tempo.dat
 done
 
-mv COMP-tempo.dat ./time
+mv intel-tempo.dat ./time

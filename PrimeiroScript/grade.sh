@@ -12,4 +12,4 @@ rm gap.XSF
 
 #paste
 
-paste < (awk '{printf "%12.6f \n", $1}' col1.XSF) < (awk '{printf "%12.6\n", $1}' col2.XSF) > fim.dat
+#paste < (awk '{printf "%12.6f \n", $1}' col1.XSF) < (awk '{printf "%12.6\n", $1}' col2.XSF) > fim.dat
