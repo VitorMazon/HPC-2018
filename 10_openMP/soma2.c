@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <omp.h>
-#define N 		1000
+#include <time.h>
+#define N 		100000
 
 void main() {
 	int i, n;
 	float a[N], b[N], c[N];
-	
+	clock_t begin = clock();
 	//Algumas inicializações
 	for(i=0; i<N; i++)
 		a[i] = b[i] = i * 1.0;
@@ -27,4 +28,8 @@ void main() {
 		} // fim das seções
 
 	} // fim da seção paralela
+	
+	clock_t end = clock();
+	double tempo = (double)(end - begin) / CLOCKS_PER_SEC;
+	printf("tempo = %lf", tempo);
 }
