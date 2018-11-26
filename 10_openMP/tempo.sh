@@ -3,7 +3,7 @@
 # =======================================================================
 #   Script para rodar siesta e criar um aquivo com o  tempo de execucao
 # =======================================================================
-for j in $(seq 1 1000)
+for j in $(seq 1 100)
 do
   for i in 0 1 2 3
    do

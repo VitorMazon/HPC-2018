@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cml convention="CMLComp" fileId="benzene.xml" xmlns="http://www.xml-cml.org/schema" xmlns:siesta="http://www.uam.es/siesta/namespace" xmlns:siestaUnits="http://www.uam.es/siesta/namespace/units" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fpx="http://www.uszla.me.uk/fpx" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:units="http://www.uszla.me.uk/FoX/units" xmlns:cmlUnits="http://www.xml-cml.org/units/units" xmlns:siUnits="http://www.xml-cml.org/units/siUnits" xmlns:atomicUnits="http://www.xml-cml.org/units/atomic">
-  <metadata name="UUID" content="54b726b0-e688-11e8-7a7f-9355fb6640a5"/>
+  <metadata name="UUID" content="b3979ad0-e74f-11e8-700b-b61194bf33cb"/>
   <metadataList>
     <metadata name="siesta:Program" content="Siesta"/>
     <metadata name="siesta:Version" content="siesta-4.0--530"/>
     <metadata name="siesta:Arch" content="intel"/>
-    <metadata name="siesta:Flags" content="ifort -O3"/>
-    <metadata name="siesta:StartTime" content="2018-11-12T16-36-01"/>
+    <metadata name="siesta:Flags" content="ifort -O3 -zero -mp1 -xHost -ipo"/>
+    <metadata name="siesta:StartTime" content="2018-11-13T16-23-10"/>
     <metadata name="siesta:Mode" content="Serial"/>
     <metadata name="siesta:Nodes" content="         1"/>
     <metadata name="siesta:NetCDF" content="false"/>
@@ -57,7 +57,7 @@
       <scalar dataType="xsd:integer" units="cmlUnits:dimensionless">0</scalar>
     </parameter>
     <parameter dictRef="siesta:g2max" name="MeshCutOff">
-      <scalar dataType="fpx:real" units="siestaUnits:Ry">3.500000000000e2</scalar>
+      <scalar dataType="fpx:real" units="siestaUnits:Ry">1.500000000000e2</scalar>
     </parameter>
     <parameter dictRef="siesta:NetCharge" name="NetCharge">
       <scalar dataType="fpx:real" units="siestaUnits:e__">0.000000000000e0</scalar>
@@ -193,3 +193,18 @@
     <crystal title="Lattice Parameters">
       <cellParameter latticeType="real" parameterType="length" units="units:angstrom">11.776283 11.030875 6.266317</cellParameter>
       <cellParameter latticeType="real" parameterType="angle" units="units:degree">90.000000 90.000000 90.000000</cellParameter>
+    </crystal>
+    <propertyList>
+      <property dictRef="siesta:ntm" title="Mesh">
+        <array size="3" dataType="xsd:integer" units="cmlUnits:countable">90 90 48</array>
+      </property>
+      <property dictRef="siesta:g2max" title="Requested Cut-Off">
+        <scalar dataType="fpx:real" units="siestaUnits:Ry">1.500000000000e2</scalar>
+      </property>
+      <property dictRef="siesta:g2mesh" title="Actual Cut-Off">
+        <scalar dataType="fpx:real" units="siestaUnits:Ry">1.614247853312e2</scalar>
+      </property>
+    </propertyList>
+    <module serial="1" dictRef="SCF" role="step"/>
+  </module>
+</cml>
